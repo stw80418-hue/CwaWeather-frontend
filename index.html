@@ -4,24 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>森森天氣</title>
-    <link rel="icon" type="image/png" href="./icon-v2.png">
-    <link rel="apple-touch-icon" href="./icon-v2.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="./icon-v2.png">
+    <title>新北耶誕城</title>
+    <link rel="icon" type="image/png" href="./candy-cane.png">
+    <link rel="apple-touch-icon" href="./candy-cane.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./candy-cane.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700;900&display=swap"
         rel="stylesheet">
 
     <style>
+
+        :root {
+    --xmas-bg: radial-gradient(circle at top, #0f1a2b, #05080f);
+    --xmas-red: #c93a3a;
+    --xmas-green: #3bb78f;
+    --xmas-gold: #f4d03f;
+    --xmas-card: rgba(20, 30, 50, 0.85);
+    --xmas-text: #e8f0ff;
+    --xmas-soft: rgba(255, 255, 255, 0.12);
+}
         :root {
             --ac-green: #7DE1A9;
             --ac-bg-pattern: #8FD8AF;
             --ac-cream: #FFFEF2;
             --ac-yellow: #F9F195;
-            --ac-brown: #796452;
+            --ac-brown: #FFFFFF;
             --ac-blue: #4FB5D9;
-            --ac-dark: #58504A;
+            --ac-dark: #e8f0ff;
             --ac-card-border: #E6E0C8;
         }
 
@@ -32,19 +42,15 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        body {
-            font-family: 'Zen Maru Gothic', sans-serif;
-            background-color: var(--ac-green);
-            /* 更細緻的斜紋背景 */
-            background-image:
-                repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255, 255, 255, 0.2) 20px, rgba(255, 255, 255, 0.2) 40px);
-            min-height: 100vh;
-            color: var(--ac-dark);
-            /* 防止 iOS 左右滑動 */
-            overflow-x: hidden;
-            padding-bottom: 20px;
-        }
-
+body {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    background: var(--xmas-bg);
+    min-height: 100vh;
+    color: var(--xmas-text);
+    overflow-x: hidden;
+    padding-bottom: 20px;
+    position: relative;
+}
         /* 頂部狀態列 */
         .status-bar {
             display: flex;
@@ -58,17 +64,15 @@
             z-index: 100;
         }
 
-        .location-pill {
-            background: var(--ac-yellow);
-            color: var(--ac-brown);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: 900;
-            font-size: 1.1rem;
-            transform: rotate(-2deg);
-            border: 2px solid white;
-            box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
-        }
+.location-pill {
+    background: var(--xmas-red);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-weight: 900;
+    font-size: 1.1rem;
+    border: 1px solid var(--xmas-gold);
+}
 
         .update-pill {
             font-size: 0.8rem;
@@ -86,31 +90,26 @@
         }
 
         /* === 核心：今日焦點卡片 === */
-        .hero-card {
-            background: var(--ac-cream);
-            border-radius: 35px;
-            padding: 30px 25px;
-            text-align: center;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            border: 4px solid white;
-            margin-bottom: 25px;
-            position: relative;
-        }
-
+.hero-card {
+    background: var(--xmas-card);
+    border-radius: 35px;
+    padding: 30px 25px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(244, 208, 63, 0.18);
+    border: 2px solid var(--xmas-soft);
+    margin-bottom: 25px;
+    position: relative;
+    backdrop-filter: blur(10px);
+}
         /* 像動森的對話氣泡 */
-        .hero-period {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--ac-blue);
-            color: white;
-            padding: 5px 20px;
-            border-radius: 20px;
-            font-weight: bold;
-            border: 3px solid white;
-            box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
-        }
+.hero-period {
+    background: var(--xmas-green);
+    color: white;
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    border: 1px solid var(--xmas-gold);
+}
 
         .hero-temp-container {
             display: flex;
@@ -185,14 +184,13 @@
         }
 
         /* === 稍後預報：橫向滑動區 === */
-        .section-title {
-            font-size: 1.2rem;
-            color: white;
-            margin-bottom: 15px;
-            margin-left: 10px;
-            font-weight: 900;
-            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
-        }
+.section-title {
+    font-size: 1.2rem;
+    color: #5C93FA;
+    margin-bottom: 15px;
+    margin-left: 10px;
+    font-weight: 900;
+}
 
         .scroll-container {
             display: flex;
@@ -208,17 +206,16 @@
             display: none;
         }
 
-        .mini-card {
-            min-width: 140px;
-            background: rgba(255, 255, 255, 0.85);
-            border-radius: 25px;
-            padding: 20px 15px;
-            text-align: center;
-            border: 3px solid white;
-            flex-shrink: 0;
-            /* 防止被擠壓 */
-        }
-
+.mini-card {
+    min-width: 140px;
+    background: rgba(15, 25, 45, 0.9);
+    border-radius: 25px;
+    padding: 20px 15px;
+    text-align: center;
+    border: 1px solid var(--xmas-soft);
+    flex-shrink: 0;
+    box-shadow: 0 0 15px rgba(255,255,255,0.05);
+}
         .mini-time {
             background: var(--ac-green);
             color: white;
@@ -242,29 +239,50 @@
         }
 
         /* Loading 畫面 */
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--ac-green);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
-        }
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(20, 30, 50, 0.85);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* 確保最上層 */
+}
+body.loading .status-bar {
+    display: none;
+}
+        body > *:not(#snow) {
+    position: relative;
+    z-index: 5;   /* ✅ 所有內容都在雪上面 */
+}
+#snow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;   /* ✅ 雪在最底層 */
+}
     </style>
 </head>
 
 <body>
+    <canvas id="snow"></canvas>
     <div id="loading" class="loading-screen">
         <div style="font-size: 4rem; animation: bounce 2s infinite;">☁️</div>
         <p style="color: white; font-weight: bold; margin-top: 20px;">正在觀測雲的流動...</p>
     </div>
     <div class="status-bar">
-        <div class="location-pill">📍 高雄</div>
+        <div class="location-pill">📍 新北</div>
         <div id="updateTime" class="update-pill">更新中...</div>
     </div>
 
@@ -280,7 +298,7 @@
     </div>
 
     <script>
-        const API_URL = "https://cwa-backend-api.zeabur.app/api/weather/kaohsiung";
+        const API_URL = "https://weather-newtaipe.zeabur.app/api/weather/kaohsiung";
 
         function getWeatherIcon(weather) {
             if (!weather) return "🌤️";
@@ -420,7 +438,98 @@
         }
 
         document.addEventListener("DOMContentLoaded", fetchWeather);
+        const canvas = document.getElementById("snow");
+const ctx = canvas.getContext("2d");
+
+function resizeSnow() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeSnow();
+window.addEventListener("resize", resizeSnow);
+
+let snowflakes = [];
+
+for (let i = 0; i < 180; i++) {
+    snowflakes.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2 + 0.4,
+        d: Math.random() + 0.3,
+        o: Math.random() * 0.6 + 0.2
+    });
+}
+
+function drawSnow() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "rgba(255,255,255,0.8)";
+
+    ctx.beginPath();
+    for (let i = 0; i < snowflakes.length; i++) {
+        let f = snowflakes[i];
+        ctx.globalAlpha = f.o;
+        ctx.moveTo(f.x, f.y);
+        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2, true);
+    }
+    ctx.fill();
+    updateSnow();
+}
+
+let angle = 0;
+
+function updateSnow() {
+    angle += 0.01;
+
+    for (let i = 0; i < snowflakes.length; i++) {
+        let f = snowflakes[i];
+        f.y += Math.pow(f.d, 1.5);
+        f.x += Math.sin(angle) * 0.3;
+
+        if (f.y > canvas.height) {
+            snowflakes[i] = {
+                x: Math.random() * canvas.width,
+                y: 0,
+                r: f.r,
+                d: f.d,
+                o: f.o
+            };
+        }
+    }
+}
+
+function animateSnow() {
+    drawSnow();
+    requestAnimationFrame(animateSnow);
+}
+
+animateSnow();
+// 一進頁面就進入 loading 狀態
+document.body.classList.add("loading");
+
+async function fetchWeather() {
+    try {
+        const delayPromise = new Promise(resolve => setTimeout(resolve, 1500));
+        const fetchPromise = fetch(API_URL).then(res => res.json());
+
+        const [_, json] = await Promise.all([delayPromise, fetchPromise]);
+
+        if (json.success) {
+            renderWeather(json.data);
+
+            // ✅ 關閉 loading
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+
+            // ✅ 這一行才是正確的「顯示 status bar」
+            document.body.classList.remove("loading");
+        } else {
+            throw new Error("API Error");
+        }
+    } catch (e) {
+        console.error(e);
+        alert("天氣資料讀取失敗，狸克把網路線咬斷了！");
+    }
+}
     </script>
 </body>
-
 </html>
